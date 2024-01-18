@@ -17,6 +17,10 @@
 /wp-*.php
 /xmlrpc.php
 
+# REEVELI
+/changelog.txt
+/doodle.sqf
+
 # Configuration
 wp-config.php
 
