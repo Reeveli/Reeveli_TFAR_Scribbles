@@ -1,3 +1,8 @@
+/*
+1.0.1
+	Added colons to attribute display names
+
+*/
 class Cfg3DEN
 {
 	class Object
@@ -12,7 +17,7 @@ class Cfg3DEN
 				{
 					class TFAR_scribbles_Sw
 					{
-						displayName="Default SR-scribbles";
+						displayName="Default SR-scribbles:";
 						tooltip="Default SR-scribbles for this entity";
 						property="TFAR_scribbles_Sw";
 						control="Edit";
@@ -24,7 +29,7 @@ class Cfg3DEN
 					};
 					class TFAR_scribbles_Lw
 					{
-						displayName="Default LR-scribbles";
+						displayName="Default LR-scribbles:";
 						tooltip="Default LR-scribbles for this entity";
 						property="TFAR_scribbles_Lw";
 						control="Edit";
@@ -50,7 +55,7 @@ class Cfg3DEN
 				{
 					class TFAR_scribbles_Sw
 					{
-						displayName="Default SR-scribbles";
+						displayName="Default SR-scribbles:";
 						tooltip="Default SR-scribbles for this entity";
 						property="TFAR_scribbles_Sw";
 						control="Edit";
@@ -61,7 +66,7 @@ class Cfg3DEN
 					};
 					class TFAR_scribbles_Lw
 					{
-						displayName="Default LR-scribbles";
+						displayName="Default LR-scribbles:";
 						tooltip="Default LR-scribbles for this entity";
 						property="TFAR_scribbles_Lw";
 						control="Edit";

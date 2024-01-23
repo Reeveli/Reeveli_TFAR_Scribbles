@@ -17,8 +17,8 @@ class CfgPatches
 		license = "https://www.bohemia.net/community/licenses/arma-public-license-share-alike";
 		url = "https://www.youtube.com/@Reeveli";			
         version = 1.0;
-        versionStr = "1.0.8";
-        versionAr[] = {1, 0, 8};
+        versionStr = "1.0.9";
+        versionAr[] = {1, 0, 9};
 		units[]={};
 		weapons[]={};
 	};
