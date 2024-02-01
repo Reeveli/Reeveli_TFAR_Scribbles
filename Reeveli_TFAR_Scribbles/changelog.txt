@@ -1,0 +1,36 @@
+2.0
+    New functions
+        Rev_TFAR_fnc_getLwAlt
+        Rev_TFAR_fnc_getSwAlt
+
+    All Lw UIs updated to 2.0
+
+    functions\fn_scribbleSettings.sqf updated to 1.2
+        New system to enable default scribbles from addon settings
+    functions\fn_getDefaultScribbles.sqf updated to 1.1
+    Cfg3Den.hpp updated to 1.1
+
+    functions\fn_playerInit.sqf updated to 1.0.1
+        Header typo fix
+    Reeveli_TFAR_Scribbles\functions\fn_getLwAlt.sqf updated to 1.1
+        Multiplayer check
+        Return value
+    Reeveli_TFAR_Scribbles\functions\fn_getLwFrq.sqf updated to 1.1
+        Multiplayer check
+    Reeveli_TFAR_Scribbles\functions\fn_getSwAlt.sqf updated to 1.1
+        Multiplayer check
+        Return value
+    Reeveli_TFAR_Scribbles\functions\fn_getSwFrq.sqf updated to 1.1
+        Multiplayer check
+   
+    anprc152\Rev_anprc152.paa updated with correct channel bands
+    Added headers for all dialogs
+    Fixed some typos in some function headers
+    Added header to defines.hpp
+
+1.0.8
+    Initial public release
+
+1.0.7
+    functions\fn_scribbleSettings.sqf updated to 1.0.1
+        Fixed typo in Radio settings saving -addon option

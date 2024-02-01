@@ -18,8 +18,8 @@
 /xmlrpc.php
 
 # REEVELI
-/changelog.txt
-/doodle.sqf
+# /Reeveli_TFAR_Scribbles/changelog.txt
+/Reeveli_TFAR_Scribbles/doodle.sqf
 
 # Configuration
 wp-config.php
