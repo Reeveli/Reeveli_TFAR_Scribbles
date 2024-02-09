@@ -2,8 +2,13 @@
  * Author: Reeveli
  * Part of Reeveli's TFAR Scribbles.
  * UI for RT-1523G.
-
-2.0 Update
+ 
+2.1
+	Increased nigh time threshold to <1
+	
+2.0.1
+	Updated notebook graphic to v7
+2.0
 	New UI background image
 	New dynamic controls for showing alt channel
 		Added function call to alt channel button and onLoad EH for new alt channel functionality
@@ -20,7 +25,7 @@ class rt1523g_radio_dialog
 	controlsBackground[] = {};
 	objects[] = {};
 	onUnload = "['OnRadioOpen', [player, TF_lr_dialog_radio, true, 'rt1523g_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;[TF_lr_dialog_radio # 0, [ctrlText 8009,ctrlText 8010,ctrlText 8011,ctrlText 8012,ctrlText 8013,ctrlText 8014,ctrlText 8015,ctrlText 8016]] call Rev_TFAR_fnc_saveScribble";
-	onLoad = "if (sunOrMoon < 0.2) then {((_this select 0) displayCtrl 67676) ctrlSetText '\z\tfar\addons\backpacks\rt1523g\ui\rt1523g_n.paa';((_this select 0) displayCtrl 8000) ctrlSetTextColor [0.12,0.12,0.12,1]};call Rev_TFAR_fnc_getLwAlt;";
+	onLoad = "if (sunOrMoon < 1) then {((_this select 0) displayCtrl 67676) ctrlSetText '\z\tfar\addons\backpacks\rt1523g\ui\rt1523g_n.paa';((_this select 0) displayCtrl 8000) ctrlSetTextColor [0.12,0.12,0.12,1]};call Rev_TFAR_fnc_getLwAlt;";
 	class background: RscBackPicture
 	{
 		idc = 67676;
@@ -38,7 +43,7 @@ class rt1523g_radio_dialog
 		y = TFAR_notebook_Y;
 		w = TFAR_notebook_W;
 		h = TFAR_notebook_H;
-		text="\Reeveli_TFAR_Scribbles\notebook\Rev_notebook_6.paa";
+		text="\Reeveli_TFAR_Scribbles\notebook\Rev_notebook_7.paa";
 		onLoad = "params ['_control','_config']; _control ctrlShow (missionnameSpace getvariable ['Rev_TFAR_rt1523g',false]);";
 	};
 	class Rev_fr_1: RscText

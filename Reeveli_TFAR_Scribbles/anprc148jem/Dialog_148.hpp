@@ -2,6 +2,9 @@
  * Author: Reeveli
  * Part of Reeveli's TFAR Scribbles.
  * UI for ANPRC 148.
+ 
+ 1.1
+	Increased nigh time threshold to <1
 */
 
 
@@ -19,7 +22,7 @@ class anprc148jem_radio_dialog
 	controls[] = {"background","Rev_list","Rev_ch_1","Rev_ch_2","Rev_ch_3","Rev_ch_4","Rev_ch_5","Rev_fr_1","Rev_fr_2","Rev_fr_3","Rev_fr_4","Rev_fr_5","Rev_desc_1","Rev_desc_2","Rev_desc_3","Rev_desc_4","Rev_desc_5","enter","clear","edit","channel_edit","prev_channel","next_channel","additional","speakers","stereo","volume_Switch","channel_Switch"};
 	controlsBackground[] = {};
 	onUnload = "['OnRadioOpen', [player, TF_sw_dialog_radio, false, 'anprc148jem_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;[TF_sw_dialog_radio, [ctrlText 8009,ctrlText 8010,ctrlText 8011,ctrlText 8012,ctrlText 8013]] call Rev_TFAR_fnc_saveScribble;";
-	onLoad = "if (sunOrMoon < 0.2) then {((_this select 0) displayCtrl 67676) ctrlSetText '\z\tfar\addons\handhelds\anprc148jem\ui\148_n.paa';((_this select 0) displayCtrl 8000) ctrlSetTextColor [0.12,0.12,0.12,1]};";
+	onLoad = "if (sunOrMoon < 1) then {((_this select 0) displayCtrl 67676) ctrlSetText '\z\tfar\addons\handhelds\anprc148jem\ui\148_n.paa';((_this select 0) displayCtrl 8000) ctrlSetTextColor [0.12,0.12,0.12,1]};";
 	class background: RscBackPicture
 	{
 		idc = 67676;

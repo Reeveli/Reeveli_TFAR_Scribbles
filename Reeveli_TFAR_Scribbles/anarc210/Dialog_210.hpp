@@ -2,6 +2,11 @@
  * Author: Reeveli
  * Part of Reeveli's TFAR Scribbles.
  * UI for ANARC 210.
+ 
+2.1
+	Increased nigh time threshold to <1
+2.0.1
+	Updated notebook graphic to v7
 
 2.0 Update
 	New UI background image
@@ -14,7 +19,7 @@ class anarc210_radio_dialog
 	idd = 8423;
 	movingEnable = 1;
 	onUnload = "['OnRadioOpen', [player, TF_lr_dialog_radio, true, 'anarc210_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;[TF_lr_dialog_radio # 0, [ctrlText 8009,ctrlText 8010,ctrlText 8011,ctrlText 8012,ctrlText 8013,ctrlText 8014,ctrlText 8015,ctrlText 8016]] call Rev_TFAR_fnc_saveScribble";
-	onLoad = "if ((sunOrMoon < 0.2) AND (isNull objectParent player)) then {((_this select 0) displayCtrl 67676) ctrlSetTextColor [0.12,0.12,0.12,1];((_this select 0) displayCtrl 8000) ctrlSetTextColor [0.12,0.12,0.12,1]};call Rev_TFAR_fnc_getLwAlt;";
+	onLoad = "if ((sunOrMoon < 1) AND (isNull objectParent player)) then {((_this select 0) displayCtrl 67676) ctrlSetTextColor [0.12,0.12,0.12,1];((_this select 0) displayCtrl 8000) ctrlSetTextColor [0.12,0.12,0.12,1]};call Rev_TFAR_fnc_getLwAlt;";
 	controls[] = {"background","Rev_list","Rev_fr_1","Rev_fr_2","Rev_fr_3","Rev_fr_4","Rev_fr_5","Rev_fr_6","Rev_fr_7","Rev_fr_8","Rev_desc_1","Rev_desc_2","Rev_desc_3","Rev_desc_4","Rev_desc_5","Rev_desc_6","Rev_desc_7","Rev_desc_8","Rev_alt_1","Rev_alt_2","Rev_alt_3","Rev_alt_4","Rev_alt_5","Rev_alt_6","Rev_alt_7","Rev_alt_8","channel_edit","edit","enter","clear","increase_volume","stereo","channel_01","channel_02","channel_03","channel_04","channel_05","channel_06","channel_07","channel_08","channel_09","additional","speakers","channel_Switch"};
 	controlsBackground[] = {};
 	class background: RscBackPicture
@@ -34,7 +39,7 @@ class anarc210_radio_dialog
 		y = TFAR_notebook_Y;
 		w = TFAR_notebook_W;
 		h = TFAR_notebook_H;
-		text="\Reeveli_TFAR_Scribbles\notebook\Rev_notebook_6.paa";
+		text="\Reeveli_TFAR_Scribbles\notebook\Rev_notebook_7.paa";
 		onLoad = "params ['_control','_config']; _control ctrlShow (missionnameSpace getvariable ['Rev_TFAR_210',false]);";
 	};
 	class Rev_fr_1: RscText

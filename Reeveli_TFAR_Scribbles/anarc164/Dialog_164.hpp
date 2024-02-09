@@ -2,6 +2,9 @@
  * Author: Reeveli
  * Part of Reeveli's TFAR Scribbles.
  * UI for ANARC 164.
+ 
+ 1.1
+	Increased nigh time threshold to <1
 */
 
 
@@ -15,7 +18,7 @@ class anarc164_radio_dialog
 	idd = 3174;
 	movingEnable = 1;
 	onUnload = "['OnRadioOpen', [player, TF_lr_dialog_radio, true, 'anarc164_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;[TF_lr_dialog_radio # 0, [ctrlText 8009,ctrlText 8010,ctrlText 8011,ctrlText 8012,ctrlText 8013,ctrlText 8014]] call Rev_TFAR_fnc_saveScribble";
-	onLoad = "if ((sunOrMoon < 0.2) AND (isNull objectParent player)) then {((_this select 0) displayCtrl 67676) ctrlSetTextColor [0.12,0.12,0.12,1];((_this select 0) displayCtrl 8000) ctrlSetTextColor [0.12,0.12,0.12,1]};";
+	onLoad = "if ((sunOrMoon < 1) AND (isNull objectParent player)) then {((_this select 0) displayCtrl 67676) ctrlSetTextColor [0.12,0.12,0.12,1];((_this select 0) displayCtrl 8000) ctrlSetTextColor [0.12,0.12,0.12,1]};";
 	controlsBackground[] = {};
 	objects[] = {};
 	controls[] = {"background","Rev_list","Rev_fr_1","Rev_fr_2","Rev_fr_3","Rev_fr_4","Rev_fr_5","Rev_fr_6","Rev_desc_1","Rev_desc_2","Rev_desc_3","Rev_desc_4","Rev_desc_5","Rev_desc_6","enter","channel_edit","edit","clear","prev_channel","increase_volume","stereo","additional","speakers"};

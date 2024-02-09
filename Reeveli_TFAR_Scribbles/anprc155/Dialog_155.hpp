@@ -2,6 +2,12 @@
  * Author: Reeveli
  * Part of Reeveli's TFAR Scribbles.
  * UI for ANPRC 155.
+ 
+2.1
+	Increased nigh time threshold to <1
+	
+2.0.1
+	Updated notebook graphic to v7
 
 2.0 Update
 	New UI background image
@@ -17,7 +23,7 @@ class anprc155_radio_dialog
 	controls[] = {"background","Rev_list","Rev_fr_1","Rev_fr_2","Rev_fr_3","Rev_fr_4","Rev_fr_5","Rev_fr_6","Rev_fr_7","Rev_fr_8","Rev_desc_1","Rev_desc_2","Rev_desc_3","Rev_desc_4","Rev_desc_5","Rev_desc_6","Rev_desc_7","Rev_desc_8","Rev_alt_1","Rev_alt_2","Rev_alt_3","Rev_alt_4","Rev_alt_5","Rev_alt_6","Rev_alt_7","Rev_alt_8","enter","channel_edit","edit","clear","prev_channel","next_channel","volume_Switch","stereo","additional","speakers"};
 	controlsBackground[] = {};
 	onUnload = "['OnRadioOpen', [player, TF_lr_dialog_radio, true, 'anprc155_radio_dialog', false]] call TFAR_fnc_fireEventHandlers;[TF_lr_dialog_radio # 0, [ctrlText 8009,ctrlText 8010,ctrlText 8011,ctrlText 8012,ctrlText 8013,ctrlText 8014,ctrlText 8015,ctrlText 8016]] call Rev_TFAR_fnc_saveScribble";
-	onLoad = "if(sunOrMoon < 0.2) then {((_this select 0) displayCtrl 67676) ctrlSetText '\z\tfar\addons\backpacks\anprc155\ui\155_n.paa';((_this select 0) displayCtrl 8000) ctrlSetTextColor [0.12,0.12,0.12,1]};call Rev_TFAR_fnc_getLwAlt;";
+	onLoad = "if(sunOrMoon < 1) then {((_this select 0) displayCtrl 67676) ctrlSetText '\z\tfar\addons\backpacks\anprc155\ui\155_n.paa';((_this select 0) displayCtrl 8000) ctrlSetTextColor [0.12,0.12,0.12,1]};call Rev_TFAR_fnc_getLwAlt;";
 	class background: RscBackPicture
 	{
 		idc = 67676;
@@ -35,7 +41,7 @@ class anprc155_radio_dialog
 		y = TFAR_notebook_Y;
 		w = TFAR_notebook_W;
 		h = TFAR_notebook_H;
-		text="\Reeveli_TFAR_Scribbles\notebook\Rev_notebook_6.paa";
+		text="\Reeveli_TFAR_Scribbles\notebook\Rev_notebook_7.paa";
 		onLoad = "params ['_control','_config']; _control ctrlShow (missionnameSpace getvariable ['Rev_TFAR_155',false]);";
 	};
 	class Rev_fr_1: RscText

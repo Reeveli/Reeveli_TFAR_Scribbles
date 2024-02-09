@@ -13,6 +13,8 @@
  * Example:
  * [1,_control] call Rev_TFAR_fnc_getSwFrq
  *
+ 1.2
+	Added code for night time coloring
  1.1
 	Added multiplayer check
  */
@@ -36,6 +38,7 @@ private _freq = _channels select (_channel -1);
 
 if (!isNull _control) then {
 	_control ctrlSetText _freq;
+	if (sunOrMoon < 1) then {_control ctrlSetTextColor [0,0,0,1]};
 };
 
 _freq;

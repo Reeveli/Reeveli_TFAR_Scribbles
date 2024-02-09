@@ -14,6 +14,8 @@
  * Example:
  * ['Sw', 1, _control] call Rev_TFAR_fnc_loadScribble
  *
+3.1
+	Added code for night time text color
 3.0
 	Function rewritten to solve issues with vehicle radios
 2.0
@@ -39,7 +41,10 @@ if ((typeName _radio) isEqualTo "OBJECT") exitWith {
 	//Safety check if array is smaller than called channel, not all radio dialogs have full 8 slots for scribbles
 	if (count _scribbles < (_index - 1)) exitWith {""};
 	private _text = _scribbles select (_index - 1);
-	if (!isNull _control) then {_control ctrlSetText _text;};
+	if (!isNull _control) then {
+		_control ctrlSetText _text;
+		if (sunOrMoon < 1) then {_control ctrlSetTextColor [0,0,0,1]};
+	};
 	_text;
 };
 
@@ -54,6 +59,7 @@ if (!isNil "_unique") exitWith
 	private _text = _unique select (_index - 1);
 	if (!isNull _control) then {
 		_control ctrlSetText _text;
+		if (sunOrMoon < 1) then {_control ctrlSetTextColor [0,0,0,1]};
 	};
 	_text;
 };

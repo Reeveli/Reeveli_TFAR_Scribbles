@@ -2,6 +2,12 @@
  * Author: Reeveli
  * Part of Reeveli's TFAR Scribbles.
  * UI for Fadak.
+ 
+1.1
+	Increased nigh time threshold to <1
+	Updated Rev_list to v2 graphic
+	Removed holdover placeholdet text from Rev_fr_1
+
 */
 
 
@@ -20,7 +26,7 @@ class fadak_radio_dialog
 	controls[] = {"background","Rev_list","Rev_fr_1","Rev_fr_2","Rev_fr_3","Rev_fr_4","Rev_fr_5","Rev_fr_6","Rev_fr_7","Rev_fr_8","Rev_desc_1","Rev_desc_2","Rev_desc_3","Rev_desc_4","Rev_desc_5","Rev_desc_6","Rev_desc_7","Rev_desc_8","enter","clear","channel_switch","increase_volume","decrease_volume","edit","channel_edit","stereo","additional","speakers"};
 	controlsBackground[] = {};
 	onUnload = "['OnRadioOpen', [player, TF_sw_dialog_radio, false, 'fadak_radio_dialog', false]] call TFAR_fnc_fireEventHandlers; [TF_sw_dialog_radio, [ctrlText 8009,ctrlText 8010,ctrlText 8011,ctrlText 8012,ctrlText 8013,ctrlText 8014,ctrlText 8015,ctrlText 8016]] call Rev_TFAR_fnc_saveScribble;";
-	onLoad = "if (sunOrMoon < 0.2) then { ((_this select 0) displayCtrl 67676) ctrlSetText '\z\tfar\addons\handhelds\fadak\ui\fadak_n.paa'; ((_this select 0) displayCtrl 8000) ctrlSetTextColor [0.18,0.18,0.18,1]};";
+	onLoad = "if (sunOrMoon < 1) then { ((_this select 0) displayCtrl 67676) ctrlSetText '\z\tfar\addons\handhelds\fadak\ui\fadak_n.paa'; ((_this select 0) displayCtrl 8000) ctrlSetTextColor [0.18,0.18,0.18,1]};";
 	class background: RscBackPicture
 	{
 		idc = 67676;
@@ -34,18 +40,18 @@ class fadak_radio_dialog
 	class Rev_list: background
 	{
 		idc=8000;
-		text="\Reeveli_TFAR_Scribbles\fadak\Rev_fadak.paa";
+		text="\Reeveli_TFAR_Scribbles\fadak\Rev_fadak_2.paa";
 		onLoad = "params ['_control','_config']; _control ctrlShow (missionnameSpace getvariable ['Rev_TFAR_FADAK',false]);";
 	};
 	class Rev_fr_1: RscText
 	{
 		idc = 8001;
-		text = "110.1";
+		text = "";
 		font = "Caveat";
 		sizeEx = TFAR_FADAK_H * 0.020;	
 		colorText[] = {0,0,0,1};
 		shadow = 0;
-		x = TFAR_FADAK_X + TFAR_FADAK_W * 0.385;
+		x = TFAR_FADAK_X + TFAR_FADAK_W * 0.383; //0.385
 		y = TFAR_FADAK_Y + TFAR_FADAK_H * 0.821;
 		w = TFAR_FADAK_W * 0.081;
 		h = TFAR_FADAK_H * 0.016;
@@ -103,7 +109,7 @@ class fadak_radio_dialog
 		colorText[] = {0,0,0,1};
 		shadow = 0;
 		style = 512;
-		x = TFAR_FADAK_X + TFAR_FADAK_W * 0.47;
+		x = TFAR_FADAK_X + TFAR_FADAK_W * 0.468; //0.47
 		y = TFAR_FADAK_Y + TFAR_FADAK_H * 0.821;
 		w = TFAR_FADAK_W * 0.16;
 		h = TFAR_FADAK_H * 0.016;
