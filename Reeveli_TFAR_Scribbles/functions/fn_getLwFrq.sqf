@@ -5,7 +5,7 @@
  * Called from long range radio dialog control eventhandlers.
  *
  * Arguments:
- * 0: Channel number (1 - 8) <NUMBER>
+ * 0: Channel number (1 - 9) <NUMBER>
  * 1: Optional: Control <CONTROL>
  *
  * Return Value: Frequency <STRING>
@@ -13,6 +13,8 @@
  * Example:
  * [1] call Rev_TFAR_fnc_getLwFrq
  *
+ 1.2.1
+	Updated header documentation
  1.2
 	Added code for night time coloring
  1.1

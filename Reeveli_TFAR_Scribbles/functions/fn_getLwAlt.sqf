@@ -2,7 +2,7 @@
  * Author: Reeveli
  * Part of Reeveli's TFAR Scribbles.
  * Function to facilitate LW alt channel marking for TFAR Scribble UIs.
- * If proper alt channel (0-7) is found then previous mark is removed and new one added.
+ * Previous mark is removed and new one added. Note that function only supports 8 (not the max nine that TFAR has) cotnrols from this mod.
  * Called by radio UI dialog main onLoad EH.
  *
  * Arguments: NONE
@@ -12,6 +12,9 @@
  * Example:
  * call Rev_TFAR_fnc_getLwAlt
  *
+ 1.3.1
+	Updated header documentation
+	
  1.3
 	Fixed a bug where alt channel would not be removed (safety check exited at -1)
  1.2

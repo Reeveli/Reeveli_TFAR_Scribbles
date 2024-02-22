@@ -1,3 +1,14 @@
+2.2
+    Updated CfgPatches with name attribute
+    functions\fn_getDefaultScribbles.sqf updated to 1.2
+        Major restructurong to fix critical bug with virtual curator entities
+2.1.1
+    Updated some function headers with better documentation
+        functions\fn_getLwAlt.sqf updated to 1.3.1
+        functions\fn_getLwFrq.sqf updated to 1.2.1
+        functions\fn_getSwAlt.sqf updated to 1.3.1
+        functions\fn_getSwFrq.sqf updated to 1.2.1
+
 2.1
     Several functions updated to support night time interfaces
         functions\fn_getLwFrq.sqf updated to 1.2

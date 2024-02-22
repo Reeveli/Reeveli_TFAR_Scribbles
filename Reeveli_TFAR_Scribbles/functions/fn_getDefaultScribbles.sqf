@@ -11,6 +11,8 @@
  * Example:
  * call Rev_TFAR_fnc_getDefaultScribbles
  *
+ 1.2
+    Major restructurong to fix critical bug with virtual curator entities
  1.1
     Rewritten to account for CBA settings now also having way to add default scribbles
  */
@@ -18,59 +20,65 @@
 if (!hasInterface) exitWith {false};
 if (!isMultiplayer) exitWith {diag_log "Rev_TFAR_fnc_getDefaultScribbles: TFAR only works in multiplayer";false};
 
-private _SR = switch (side player) do {
-            case WEST: {
-                Rev_TFAR_settings_SR_B;
-            };
-            case EAST: {
-                Rev_TFAR_settings_SR_O;
-            };
-            case INDEPENDENT: {
-                Rev_TFAR_settings_SR_I;
-            };
-		};	
 
-private _LR = switch (side player) do {
-            case WEST: {
-                Rev_TFAR_settings_LR_B;
-            };
-            case EAST: {
-                Rev_TFAR_settings_LR_O;
-            };
-            case INDEPENDENT: {
-                Rev_TFAR_settings_LR_I;
-            };
-		};	        
-	
-
-
-private _Sw = vehicle player getVariable ['TFAR_scribbles_Sw',nil];
-private _Lw = vehicle player getVariable ['TFAR_scribbles_Lw',nil];
-
-
-//Global scribbles should only apply if object specific ones are not present
-if (isNil "_Sw") then {vehicle player setVariable ['TFAR_scribbles_Sw',_SR splitString ','];};
-if (isNil "_Lw") then {vehicle player setVariable ['TFAR_scribbles_Lw',_LR splitString ','];};
-
-
-//Unique SW
-private _condition = {getNumber (configfile >> "CfgWeapons" >> _x >> "tf_radio") isEqualTo 1};	
-if (_condition count assignedItems player > 0) then {
-    private _value1 = vehicle player getVariable ['TFAR_scribbles_Sw',nil];
-    Rev_TFAR_scribbleNamespace setVariable [call TFAR_fnc_activeSwRadio, _value1];
-    diag_log "Rev_TFAR_fnc_getDefaultScribbles: Default Sw radio scribbles applied, EH ID36";
+//In-line functions to set sribbles for Sw radio (e.g. curator module sget assigned multiple at game start)
+fnc_sw_logic = {
+	params ["_object"];
+    private _scribbles = switch (getText (configfile >> "CfgWeapons" >> _object >> "tf_encryptionCode")) do {
+        case "tf_west_radio_code": {Rev_TFAR_settings_SR_B};
+        case "tf_east_radio_code": {Rev_TFAR_settings_SR_O};
+        case "tf_independent_radio_code": {Rev_TFAR_settings_SR_I};
+        default {''};
+    };
+    private _Sw = vehicle player getVariable ['TFAR_scribbles_Sw',nil];
+    //Global scribbles should only apply if object specific ones are not present
+    if (!isNil "_Sw") then {_scribbles = _Sw} else {_scribbles = _scribbles splitString ','};
+    Rev_TFAR_scribbleNamespace setVariable [_object, _scribbles];
 };
 
-//Prototype or vanilla item
-private _condition2 = {getNumber (configfile >> "CfgWeapons" >> _x >> "tf_prototype") isEqualTo 1};	
+fnc_sw_unit = {
+	params ["_object"];
+    private _scribbles = switch (side player) do {
+        case WEST: {Rev_TFAR_settings_SR_B;};
+        case EAST: {Rev_TFAR_settings_SR_O;};
+        case INDEPENDENT: {Rev_TFAR_settings_SR_I;};
+        default {''};
+    };
+    private _Sw = vehicle player getVariable ['TFAR_scribbles_Sw',nil];
+    //Global scribbles should only apply if object specific ones are not present
+    if (!isNil "_Sw") then {_scribbles = _Sw} else {_scribbles = _scribbles splitString ','};
+    Rev_TFAR_scribbleNamespace setVariable [_object, _scribbles];
+};
+
+fnc_lw = {
+	params ["_object"];
+    private _scribbles = switch (side player) do {
+        case WEST: { Rev_TFAR_settings_LR_B;  };
+        case EAST: {Rev_TFAR_settings_LR_O; };
+        case INDEPENDENT: {  Rev_TFAR_settings_LR_I;};
+        default {''};
+    };
+    private _Lw = vehicle player getVariable ['TFAR_scribbles_Lw',nil];
+    //Global scribbles should only apply if object specific ones are not present
+    if (isNil "_Lw") then {_scribbles = _Lw} else {_scribbles = _scribbles splitString ','};
+    //Transmitted only locally, when the radio owner closes their UI first time scribbles are saved globally
+    _object setVariable ["Rev_TFAR_LwScribbles", _scribbles , false];
+};
+
+//TFAR or vanilla item
+private _condition2 = {isNumber (configfile >> "CfgWeapons" >> _x >> "tf_prototype")};	
 if (("ItemRadio" in assignedItems player) OR (_condition2 count assignedItems player > 0)) then {	 
     [
         "Rev_TFAR_defaultScribblesEH",
         "OnRadiosReceived",
         {
             params ["_unit","_radio"];
-            private _scribbles = vehicle player getVariable ['TFAR_scribbles_Sw',nil];
-            Rev_TFAR_scribbleNamespace setVariable [call TFAR_fnc_activeSwRadio, _scribbles];
+            //private _scribbles = vehicle player getVariable ['TFAR_scribbles_Sw',nil];
+            //Rev_TFAR_scribbleNamespace setVariable [_radio #0, _scribbles];
+
+           if (vehicle player iskindof "VirtualCurator_F") then { {[_x] call fnc_sw_logic} forEach _radio;}
+           else { {[_x] call fnc_sw_unit} forEach _radio;};
+           
             //Remove EH after use
             ["Rev_TFAR_defaultScribblesEH", "OnRadiosReceived", player] call TFAR_fnc_removeEventHandler;
             diag_log "Rev_TFAR_fnc_getDefaultScribbles: Default Sw radio scribbles applied, EH ID37";
@@ -84,12 +92,10 @@ if (("ItemRadio" in assignedItems player) OR (_condition2 count assignedItems pl
 //We need delay to give TFAR time to assign Lw radio to player if present on mission start
 [
     {
-        if (call TFAR_fnc_haveLRRadio) then
+        if (call TFAR_fnc_haveLRRadio && !(vehicle player iskindof "VirtualCurator_F")) then
         {
             private _LRradio = (call TFAR_fnc_activeLrRadio) # 0;
-            private _value2 = vehicle player getVariable ['TFAR_scribbles_Lw',nil];
-            //Not transmitted globally, when the radio owner closes their UI first time scribbles are saved globally
-            _LRradio setVariable ["Rev_TFAR_LwScribbles", _value2, false];
+            [_LRradio] call fnc_lw;
             diag_log "Rev_TFAR_fnc_getDefaultScribbles: Default Lw radio scribbles applied, EH ID38";
         };
     },

@@ -2,6 +2,7 @@ class CfgPatches
 {
 	class Reeveli_TFAR_scribbles
 	{
+		name = "TFAR Scribbles";
 		requiredVersion=2.0;
 		requiredAddons[]=
 		{
@@ -16,9 +17,9 @@ class CfgPatches
 		authors[]= {"Reeveli"};
 		license = "https://www.bohemia.net/community/licenses/arma-public-license-share-alike";
 		url = "https://www.youtube.com/@Reeveli";			
-        version = 2.1;
-        versionStr = "2.1.0";
-        versionAr[] = {2, 1, 0};
+        version = 2.2;
+        versionStr = "2.2";
+        versionAr[] = {2, 2};
 		units[]={};
 		weapons[]={};
 	};
