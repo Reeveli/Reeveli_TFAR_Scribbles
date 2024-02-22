@@ -1,0 +1,5 @@
+1.0.1
+    Updated CfgPatches with name attribute
+
+1.0
+    Initial public release

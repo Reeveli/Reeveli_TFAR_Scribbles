@@ -9,12 +9,13 @@ class CfgPatches
 			"Reeveli_TFAR_scribbles"
 		};
 		author="Reeveli";
-		authors[]= {"Reeveli"};
+		authors[]= {"Reeveli"};		
+		name = "TFAR SOGPF Scribbles";
 		license = "https://www.bohemia.net/community/licenses/arma-public-license-share-alike";
 		url = "https://www.youtube.com/@Reeveli";			
         version = 1.0;
-        versionStr = "1.0.0";
-        versionAr[] = {1, 0, 0};
+        versionStr = "1.0.1";
+        versionAr[] = {1, 0, 1};
 		units[]={};
 		weapons[]={};
 		skipWhenMissingDependencies = 1;
