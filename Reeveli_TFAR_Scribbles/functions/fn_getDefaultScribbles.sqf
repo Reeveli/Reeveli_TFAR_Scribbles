@@ -11,8 +11,12 @@
  * Example:
  * call Rev_TFAR_fnc_getDefaultScribbles
  *
+ 1.2.2
+    Bug fix for Lw object scribbles not working, (!isNil "_Lw") was missing !
+ 1.2.1
+    Removed some dead code
  1.2
-    Major restructurong to fix critical bug with virtual curator entities
+    Major restructuring to fix critical bug with virtual curator entities
  1.1
     Rewritten to account for CBA settings now also having way to add default scribbles
  */
@@ -21,7 +25,7 @@ if (!hasInterface) exitWith {false};
 if (!isMultiplayer) exitWith {diag_log "Rev_TFAR_fnc_getDefaultScribbles: TFAR only works in multiplayer";false};
 
 
-//In-line functions to set sribbles for Sw radio (e.g. curator module sget assigned multiple at game start)
+//In-line functions to set sribbles for Sw radio (e.g. curator module gets assigned multiple at game start)
 fnc_sw_logic = {
 	params ["_object"];
     private _scribbles = switch (getText (configfile >> "CfgWeapons" >> _object >> "tf_encryptionCode")) do {
@@ -60,7 +64,7 @@ fnc_lw = {
     };
     private _Lw = vehicle player getVariable ['TFAR_scribbles_Lw',nil];
     //Global scribbles should only apply if object specific ones are not present
-    if (isNil "_Lw") then {_scribbles = _Lw} else {_scribbles = _scribbles splitString ','};
+    if (!isNil "_Lw") then {_scribbles = _Lw} else {_scribbles = _scribbles splitString ','};
     //Transmitted only locally, when the radio owner closes their UI first time scribbles are saved globally
     _object setVariable ["Rev_TFAR_LwScribbles", _scribbles , false];
 };
@@ -73,9 +77,6 @@ if (("ItemRadio" in assignedItems player) OR (_condition2 count assignedItems pl
         "OnRadiosReceived",
         {
             params ["_unit","_radio"];
-            //private _scribbles = vehicle player getVariable ['TFAR_scribbles_Sw',nil];
-            //Rev_TFAR_scribbleNamespace setVariable [_radio #0, _scribbles];
-
            if (vehicle player iskindof "VirtualCurator_F") then { {[_x] call fnc_sw_logic} forEach _radio;}
            else { {[_x] call fnc_sw_unit} forEach _radio;};
            

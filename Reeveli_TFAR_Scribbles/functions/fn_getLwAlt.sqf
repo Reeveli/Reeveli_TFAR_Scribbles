@@ -13,8 +13,7 @@
  * call Rev_TFAR_fnc_getLwAlt
  *
  1.3.1
-	Updated header documentation
-	
+	Updated header documentation	
  1.3
 	Fixed a bug where alt channel would not be removed (safety check exited at -1)
  1.2

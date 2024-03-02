@@ -1,7 +1,11 @@
+2.2.1
+    functions\fn_getDefaultScribbles.sqf updated to 1.2.2
+        Bug fix for Lw object scribbles not working, (!isNil "_Lw") was missing !
+        Removed dead code
 2.2
     Updated CfgPatches with name attribute
     functions\fn_getDefaultScribbles.sqf updated to 1.2
-        Major restructurong to fix critical bug with virtual curator entities
+        Major restructuring to fix critical bug with virtual curator entities
 2.1.1
     Updated some function headers with better documentation
         functions\fn_getLwAlt.sqf updated to 1.3.1
