@@ -1,3 +1,6 @@
+1.0.2
+    urc10\dialog_10.hpp updated to 1.2.1
+    102E\dialog_102E.hpp updated to 1.0.1
 1.0.1
     Updated CfgPatches with name attribute
 

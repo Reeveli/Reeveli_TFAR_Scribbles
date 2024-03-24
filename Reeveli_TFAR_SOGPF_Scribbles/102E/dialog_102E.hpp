@@ -2,6 +2,8 @@
  * Author: Reeveli
  * Part of Reeveli's TFAR SOG:PF Radio scribbles.
  * UI for Type 102E transmitter.
+1.0.1
+	Cleaned missing semi-colon
 */
 
 #define REV_T102E_W			(62 * (((getResolution select 4) min 1.2) / 40))
@@ -47,7 +49,7 @@ class VN_RadioDialog_T102E
 			y = "0.5 - ((34 * (((getResolution select 4) min 1.2) / 40)) * (4 / 3)) / 2";
 			w = "(62 * (((getResolution select 4) min 1.2) / 40))";
 			h = "(34 * (((getResolution select 4) min 1.2) / 40)) * (4 / 3)";
-			onLoad = "if (sunOrMoon < 1) then {_this#0 ctrlSetTextColor [0.18,0.18,0.18,1]};"
+			onLoad = "if (sunOrMoon < 1) then {_this#0 ctrlSetTextColor [0.18,0.18,0.18,1]};";
 		};
 		class AudioDial: RscPicture
 		{

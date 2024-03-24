@@ -2,6 +2,8 @@
  * Author: Reeveli
  * Part of Reeveli's TFAR SOG:PF Radio scribbles.
  * UI for URC-10.
+1.2.1
+	Cleaned missing semi-colon
 1.2
 	Fixed scribble edit field font color during night
 1.1
@@ -133,7 +135,7 @@ class vn_rscdisplay_urc10
 			x = (9 + 20) * REV_TFARSOG_X;
 			y = ((8.3*-1) + 12.5) * REV_TFARSOG_Y;
 			w = 17 * REV_TFARSOG_W;
-			h = 18.6 * REV_TFARSOG_H
+			h = 18.6 * REV_TFARSOG_H;
 			text = "\Reeveli_TFAR_SOGPF_Scribbles\urc10\Rev_urc10.paa";
 			onLoad = "params ['_control','_config']; _control ctrlShow (missionnameSpace getvariable ['Rev_TFAR_10',false]);if (sunOrMoon < 1) then {_control ctrlSetTextColor [0.12,0.12,0.12,1]};";
 		};
