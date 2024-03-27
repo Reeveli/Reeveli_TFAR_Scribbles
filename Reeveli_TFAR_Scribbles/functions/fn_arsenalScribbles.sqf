@@ -11,6 +11,8 @@
  * Example:
  * call Rev_TFAR_fnc_arsenalScribbles
  *
+ 1.1
+    Replaced Rev_TFAR_LwScribbles with Rev_radio_settings to account for new system for tracking LW radio identifiers introduced in mod v2.3
  */
 
 if (!isMultiplayer) exitWith {false};
@@ -24,10 +26,10 @@ if (!Rev_TFAR_saveScribbles) exitWith {false};
 	if (call TFAR_fnc_haveLRRadio) then
 	{
 		private _LRradio = (call TFAR_fnc_activeLrRadio) # 0;
-		if (isnil {_LRradio getVariable ["Rev_TFAR_LwScribbles",nil]}) exitwith {
+		if (isnil {_LRradio getVariable ["Rev_radio_settings",nil]}) exitwith {
 			diag_log "Rev_TFAR_fnc_arsenalScribbles: No Lw radio scribbles found on entering BI Arsenal, EH ID1"
 		};
-		private _scribbles = _LRradio getVariable ["Rev_TFAR_LwScribbles",nil];
+		private _scribbles = _LRradio getVariable ["Rev_radio_settings",nil];
 		Rev_TFAR_scribbleNamespace setVariable ["Rev_TFAR_localLwScribbles", _scribbles];
 		diag_log "Rev_TFAR_fnc_arsenalScribbles: Lw radio scribbles saved on BI arsenal opening, EH ID2"
 	};
@@ -54,7 +56,7 @@ if (!Rev_TFAR_saveScribbles) exitWith {false};
 	{ 
 		private _scribbles = Rev_TFAR_scribbleNamespace getVariable "Rev_TFAR_localLwScribbles";
 		private _LRradio = (call TFAR_fnc_activeLrRadio) # 0;
-		_LRradio setVariable ["Rev_TFAR_LwScribbles", _scribbles, Rev_TFAR_locality];
+		_LRradio setVariable ["Rev_radio_settings", _scribbles, Rev_TFAR_locality];
 		diag_log "Rev_TFAR_fnc_arsenalScribbles: LW scribbles restored on exiting BI arsenal, EH ID5";
 	} else {
 		Rev_TFAR_scribbleNamespace setVariable ["Rev_TFAR_localLwScribbles", nil];
@@ -97,10 +99,10 @@ if (!isClass (configFile >> "CfgPatches" >> "ace_arsenal")) exitWith {};
 	if (call TFAR_fnc_haveLRRadio) then
 	{
 		private _LRradio = (call TFAR_fnc_activeLrRadio) # 0;
-		if (isnil {_LRradio getVariable ["Rev_TFAR_LwScribbles",nil]}) exitwith {
+		if (isnil {_LRradio getVariable ["Rev_radio_settings",nil]}) exitwith {
 			diag_log "Rev_TFAR_fnc_arsenalScribbles: No Lw radio scribbles found on entering ACE Arsenal, EH ID8"
 		};
-		private _scribbles = _LRradio getVariable ["Rev_TFAR_LwScribbles",nil];
+		private _scribbles = _LRradio getVariable ["Rev_radio_settings",nil];
 		Rev_TFAR_scribbleNamespace setVariable ["Rev_TFAR_localLwScribbles", _scribbles];
 		diag_log "Rev_TFAR_fnc_arsenalScribbles: Lw radio scribbles saved on ACE arsenal opening, EH ID9"
 	};
@@ -128,7 +130,7 @@ if (!isClass (configFile >> "CfgPatches" >> "ace_arsenal")) exitWith {};
 	{ 
 		private _scribbles = Rev_TFAR_scribbleNamespace getVariable "Rev_TFAR_localLwScribbles";
 		private _LRradio = (call TFAR_fnc_activeLrRadio) # 0;
-		_LRradio setVariable ["Rev_TFAR_LwScribbles", _scribbles, Rev_TFAR_locality];
+		_LRradio setVariable ["Rev_radio_settings", _scribbles, Rev_TFAR_locality];
 		diag_log "Rev_TFAR_fnc_arsenalScribbles: LW scribbles restored on exiting ACE arsenal, EH ID12";
 	} else {
 		Rev_TFAR_scribbleNamespace setVariable ["Rev_TFAR_localLwScribbles", nil];

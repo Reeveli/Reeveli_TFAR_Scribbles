@@ -11,6 +11,10 @@
  * Example:
  * call Rev_TFAR_fnc_getDefaultScribbles
  *
+ 1.3
+    Replaced Rev_TFAR_LwScribbles with Rev_radio_settings to account for new system for tracking LW radio identifiers introduced in mod v2.3
+    Reduced CBA_fnc_waitAndExecute time from 3 to 2 for Lw assignment event
+    Minor typo fix
  1.2.2
     Bug fix for Lw object scribbles not working, (!isNil "_Lw") was missing !
  1.2.1
@@ -25,7 +29,7 @@ if (!hasInterface) exitWith {false};
 if (!isMultiplayer) exitWith {diag_log "Rev_TFAR_fnc_getDefaultScribbles: TFAR only works in multiplayer";false};
 
 
-//In-line functions to set sribbles for Sw radio (e.g. curator module gets assigned multiple at game start)
+//In-line functions to set scribbles for Sw radio (e.g. curator module gets assigned multiple at game start)
 fnc_sw_logic = {
 	params ["_object"];
     private _scribbles = switch (getText (configfile >> "CfgWeapons" >> _object >> "tf_encryptionCode")) do {
@@ -66,7 +70,7 @@ fnc_lw = {
     //Global scribbles should only apply if object specific ones are not present
     if (!isNil "_Lw") then {_scribbles = _Lw} else {_scribbles = _scribbles splitString ','};
     //Transmitted only locally, when the radio owner closes their UI first time scribbles are saved globally
-    _object setVariable ["Rev_TFAR_LwScribbles", _scribbles , false];
+    _object setVariable ["Rev_radio_settings", _scribbles , false];
 };
 
 //TFAR or vanilla item
@@ -101,7 +105,7 @@ if (("ItemRadio" in assignedItems player) OR (_condition2 count assignedItems pl
         };
     },
     [],
-    3
+    2
 ] call CBA_fnc_waitAndExecute;
 
 diag_log "Rev_TFAR_fnc_getDefaultScribbles: Function closed, EH ID39";

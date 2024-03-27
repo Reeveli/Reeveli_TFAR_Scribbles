@@ -2,7 +2,7 @@
  * Author: Reeveli
  * Part of Reeveli's TFAR Scribbles.
  * Function to facilitate LW alt channel marking for TFAR Scribble UIs.
- * Previous mark is removed and new one added. Note that function only supports 8 (not the max nine that TFAR has) cotnrols from this mod.
+ * Previous mark is removed and new one added. Note that function only supports 8 (not the max nine that TFAR has) controls from this mod.
  * Called by radio UI dialog main onLoad EH.
  *
  * Arguments: NONE

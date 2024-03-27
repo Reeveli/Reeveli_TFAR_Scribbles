@@ -11,6 +11,8 @@
  * Example:
  * call Rev_TFAR_fnc_respawnScribbles
  *
+ 1.1
+    Replaced Rev_TFAR_LwScribbles with Rev_radio_settings to account for new system for tracking LW radio identifiers introduced in mod v2.3
  */
 
 if (!isMultiplayer) exitWith {false};
@@ -24,10 +26,10 @@ player addEventHandler ["Killed", {
 	if (call TFAR_fnc_haveLRRadio) then
 	{
 		private _LRradio = (call TFAR_fnc_activeLrRadio) # 0;
-		if (isnil {_LRradio getVariable ["Rev_TFAR_LwScribbles",nil]}) exitwith {
+		if (isnil {_LRradio getVariable ["Rev_radio_settings",nil]}) exitwith {
 			diag_log "Rev_TFAR_fnc_respawnScribbles: No Lw radio scribbles found on 'Killed', EH ID25";
 		};
-		private _scribbles = _LRradio getVariable ["Rev_TFAR_LwScribbles",nil];
+		private _scribbles = _LRradio getVariable ["Rev_radio_settings",nil];
 		Rev_TFAR_scribbleNamespace setVariable ["Rev_TFAR_localLwScribbles", _scribbles];
 		diag_log "Rev_TFAR_fnc_respawnScribbles: Lw radio scribbles saved on 'Killed', EH ID26";
 	};
@@ -60,7 +62,7 @@ player addEventHandler ["Respawn", {
 				if (call TFAR_fnc_haveLRRadio) then
 				{
 					private _LRradio = (call TFAR_fnc_activeLrRadio) # 0;
-					_LRradio setVariable ["Rev_TFAR_LwScribbles", _this, Rev_TFAR_locality];
+					_LRradio setVariable ["Rev_radio_settings", _this, Rev_TFAR_locality];
 					Rev_TFAR_scribbleNamespace setVariable ["Rev_TFAR_localLwScribbles",nil];
 					diag_log "Rev_TFAR_fnc_respawnScribbles: Lw radio scribbles applied on respawn, EH ID29";
 				};

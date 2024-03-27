@@ -6,7 +6,7 @@
  *
  * Arguments:
  * 0: Radio type "Sw" or "Lw" (default: "Sw") <STRING>
- * 1: Channel number (1 - 8) <NUMBER>
+ * 1: Channel number (1 - 9) <NUMBER>
  * 2: Control <CONTROL>
  *
  * Return Value: Scribble (default: ""), FALSE if function called when no correct radio present <STRING, BOOLEAN>
@@ -14,6 +14,9 @@
  * Example:
  * ['Sw', 1, _control] call Rev_TFAR_fnc_loadScribble
  *
+3.2
+	Lw portion updated to account for radio settings identifiers
+	Fixed header and comments referring to only 8 channels
 3.1
 	Added code for night time text color
 3.0
@@ -35,10 +38,13 @@ params [
 
 //Lw scribbles loaded from object
 if ((typeName _radio) isEqualTo "OBJECT") exitWith {	
-	private _scribbles = _radio getVariable "Rev_TFAR_LwScribbles";
+	private _settings = TF_lr_dialog_radio # 1;
+	
+	//If no scribbles for this identifier we can exit
+	private _scribbles = _radio getVariable ("Rev_" + _settings);
 	if (isnil "_scribbles") exitWith {""};
-
-	//Safety check if array is smaller than called channel, not all radio dialogs have full 8 slots for scribbles
+	
+	//Safety check if array is smaller than called channel, not all radio dialogs have full 9 slots for scribbles
 	if (count _scribbles < (_index - 1)) exitWith {""};
 	private _text = _scribbles select (_index - 1);
 	if (!isNull _control) then {
@@ -53,7 +59,7 @@ if ((typeName _radio) isEqualTo "OBJECT") exitWith {
 private _unique = Rev_TFAR_scribbleNamespace getVariable [_radio, nil];
 if (!isNil "_unique") exitWith
 {
-	//Safety check if array is smaller than called channel, not all radio dialogs have full 8 slots for scribbles
+	//Safety check if array is smaller than called channel, not all radio dialogs have full 9 slots for scribbles
 	if (count _unique < (_index - 1)) exitWith {""};
 
 	private _text = _unique select (_index - 1);

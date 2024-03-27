@@ -1,3 +1,11 @@
+2.3
+    Lw components updated to track scribbles for each radio identifier tag
+        functions\fn_arsenalScribbles.sqf       1.1
+        functions\fn_getDefaultScribbles.sqf    1.3
+        functions\fn_loadScribble.sqf           3.2
+        functions\fn_respawnScribbles.sqf       1.1
+        functions\fn_saveScribble.sqf           1.1
+        functions\fn_setDefaultScribbles.sqf    1.1
 2.2.1
     functions\fn_getDefaultScribbles.sqf updated to 1.2.2
         Bug fix for Lw object scribbles not working, (!isNil "_Lw") was missing !

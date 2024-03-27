@@ -13,6 +13,8 @@
  * Example:
  * [true, ["Scribble 1","Scribble 2"]] remoteExecCall ["Rev_TFAR_fnc_setDefaultScribbles",0]
  *
+ 1.1
+    Replaced Rev_TFAR_LwScribbles with Rev_radio_settings to account for new system for tracking LW radio identifiers introduced in mod v2.3
  */
 
 if (!hasInterface) exitWith {false};
@@ -43,7 +45,7 @@ if (_type) exitWith {
 if (call TFAR_fnc_haveLRRadio) then
 {
     private _LRradio = (call TFAR_fnc_activeLrRadio) # 0;
-	_LRradio setVariable ["Rev_TFAR_LwScribbles", _checked, Rev_TFAR_locality];
+	_LRradio setVariable ["Rev_radio_settings", _checked, Rev_TFAR_locality];
     systemChat "Lw scribbles changed via function call";
 	diag_log "Rev_TFAR_fnc_setDefaultScribbles: Lw radio scribbles changed via function, EH ID45";
 };
