@@ -12,6 +12,8 @@
  * Example:
  * [TF_sw_dialog_radio, [ctrlText 8009,ctrlText 8010,ctrlText 8011,ctrlText 8012,ctrlText 8013,ctrlText 8014,ctrlText 8015,ctrlText 8016]] call Rev_TFAR_fnc_saveScribble
  *
+ 1.1.1
+	Removed some leftover dead code
  1.1
 	Lw portion updated to keep track of radio settings identifier
  */
@@ -41,8 +43,3 @@ Rev_TFAR_scribbleNamespace setVariable [_radio, _scribbles];
 diag_log format ["Rev_TFAR_fnc_saveScribble: %1: %2",_radio,_scribbles];
 
 _scribbles
-
-
-//Kuinka tallentaa settings id to Lw radio variables in a way that wont overwrite other crew positions existign scribbles
-
-//isnil {[1,nil,2] select 1}
