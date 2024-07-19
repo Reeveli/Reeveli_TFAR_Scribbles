@@ -6,8 +6,10 @@
  *
  * Arguments: NONE
  *
- * Return Value: BOOLEAN
+ * Return Value: BOOLEAN (Multiplayer locality)
  *
+ 1.1
+	Changed function return values to be same as locality variable
  1.0.1
 	Fixed typo in header
  */
@@ -17,11 +19,11 @@ if (!hasInterface) exitWith {false};
 if (!isNil {Rev_TFAR_scribbleNamespace}) exitWith {
 	diag_log "Rev_TFAR_fnc_playerInit: Rev_TFAR_scribbleNamespace found, created by server";
 	Rev_TFAR_locality = true;
-	false
+	true;
 };
 
 Rev_TFAR_scribbleNamespace = false call CBA_fnc_createNamespace;
 diag_log "Rev_TFAR_fnc_playerInit: Rev_TFAR_scribbleNamespace not found from server, created locally";
 Rev_TFAR_locality = false;
 
-true;
+false;

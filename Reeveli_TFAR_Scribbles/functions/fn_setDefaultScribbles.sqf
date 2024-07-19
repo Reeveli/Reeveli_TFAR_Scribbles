@@ -13,6 +13,8 @@
  * Example:
  * [true, ["Scribble 1","Scribble 2"]] remoteExecCall ["Rev_TFAR_fnc_setDefaultScribbles",0]
  *
+ 1.2
+	Added missing booleans for Sw exit case
  1.1
     Replaced Rev_TFAR_LwScribbles with Rev_radio_settings to account for new system for tracking LW radio identifiers introduced in mod v2.3
  */
@@ -38,7 +40,9 @@ if (_type) exitWith {
 		Rev_TFAR_scribbleNamespace setVariable [_radio, _checked];
         systemChat "Sw scribbles changed via function call";
 		diag_log "Rev_TFAR_fnc_setDefaultScribbles: Sw radio scribbles changed via function, EH ID44";
+		true;
 	};
+	false;
 };
 
 //Lw

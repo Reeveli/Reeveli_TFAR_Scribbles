@@ -1,3 +1,9 @@
+2.3.2
+    functions\fn_playerInit.sqf 1.1
+        Changed function return values to be same as locality variable
+    functions\fn_setDefaultScribbles.sqf 1.2
+	    Added missing booleans for Sw exit case
+
 2.3.1
     functions\fn_saveScribble.sqf 1.1.1
 	    Removed some leftover dead code
